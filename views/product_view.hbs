@@ -1,0 +1,357 @@
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>ORDER SURVEY</title>
+  <link href="/assets/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+  <div class="container">
+    <h2 align ="center">ORDER SURVEY</h2>
+	<br>
+		<button class="btn btn-success" data-toggle="modal" data-target="#myModalAdd">Add New</button>
+    <br>
+	<br>
+	<table class="table table-striped" id="mytable">
+      <thead>
+        <tr>
+          <th>NO</th>
+          <th>ID CUSTOMER</th>
+          <th>CLIENT</th>
+		  <th>NAME APP</th>
+		  <th>ADDRESS</th>
+		  <th>KODEPOS</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+         {{#each results}}
+        <tr>
+          <td>{{ product_id }}</td>
+		  <td>{{ idprd }}</td>
+          <td>{{ client }}</td>
+          <td>{{ name }}</td>
+		  <td>{{ address }}</td>
+		  <td>{{ kodepos }}</td>
+          <td>
+            <a href="javascript:void(0);" class="btn btn-sm btn-info edit" data-id="{{ product_id }}" data-name="{{ name }}" data-idprd="{{ idprd }}" data-client="{{ client }}" data-address="{{ address }}" data-kodepos="{{ kodepos }}" data-alamat_sesuai="{{ alamat_sesuai }}" data-nama_si1="{{ nama_si1 }}" data-hubungan_si1="{{ hubungan_si1 }}" data-pekerjaan_app="{{ pekerjaan_app }}" data-status_pekerjaan="{{ status_pekerjaan }}" data-gaji_app="{{ gaji_app }}" data-nama_si2="{{ nama_si2 }}" data-hubungan_si2="{{ hubungan_si2 }}" data-pekerjaan_app2="{{ pekerjaan_app2 }}" data-status_pekerjaan2="{{ status_pekerjaan2 }}" data-gaji_app2="{{ gaji_app2 }}" data-keterangan="{{ keterangan }}">Edit</a>
+            <a href="javascript:void(0);" class="btn btn-sm btn-info view" data-id="{{ product_id }}" data-name="{{ name }}" data-idprd="{{ idprd }}" data-client="{{ client }}" data-address="{{ address }}" data-kodepos="{{ kodepos }}" data-alamat_sesuai="{{ alamat_sesuai }}" data-nama_si1="{{ nama_si1 }}" data-hubungan_si1="{{ hubungan_si1 }}" data-pekerjaan_app="{{ pekerjaan_app }}" data-status_pekerjaan="{{ status_pekerjaan }}" data-gaji_app="{{ gaji_app }}" data-nama_si2="{{ nama_si2 }}" data-hubungan_si2="{{ hubungan_si2 }}" data-pekerjaan_app2="{{ pekerjaan_app2 }}" data-status_pekerjaan2="{{ status_pekerjaan2 }}" data-gaji_app2="{{ gaji_app2 }}" data-keterangan="{{ keterangan }}">View</a>
+            <a href="javascript:void(0);" class="btn btn-sm btn-danger delete" data-id="{{ product_id }}">Delete</a>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+
+	<!-- Add New Product Modal-->
+	  <form action="/save" method="post">
+        <div class="modal fade" id="myModalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog" role="document">
+           <div class="modal-content">
+             <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">ADD NEW ORDER</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+               </button>
+             </div>
+             <div class="modal-body">
+               <div class="form-group">
+                   <input type="text" name="idprd" class="form-control" placeholder="ID CUSTOMER" required>
+               </div>
+			   <div class="form-group">
+                   <input type="text" name="name" class="form-control" placeholder="NAME APP" required>
+               </div>
+			   <div class="form-group">
+                   <input type="text" name="client" class="form-control" placeholder="CLIENT" required>
+               </div>
+			   <div class="form-group">
+                   <input type="text" name="address" class="form-control" placeholder="ADDRESS" required>
+               </div>
+			   <div class="form-group">
+                   <input type="text" name="kodepos" class="form-control" placeholder="KODE POS" required>
+               </div>
+             </div>
+             <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               <button type="submit" class="btn btn-primary">Save</button>
+             </div>
+           </div>
+         </div>
+        </div>
+	 </form>
+
+	 <!-- Edit Product Modal-->
+   <form action="/update" method="post">
+       <div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Edit Product</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                  <input type="text" name="idprd" class="form-control idprd" placeholder="ID CUSTOMER" readonly>
+              </div>
+			<div class="form-group">
+                  <input type="text" name="name" class="form-control name" placeholder="NAME APP" readonly>
+              </div>
+               <div class="form-group">
+                  <input type="text" name="client" class="form-control client" placeholder="CLIENT" readonly>
+              </div>
+			                 <div class="form-group">
+                  <input type="text" name="address" class="form-control address" placeholder="ADDRESS" readonly>
+              </div>
+			                 <div class="form-group">
+                  <input type="text" name="kodepos" class="form-control kodepos" placeholder="KODEPOS" readonly>
+              </div>
+			   <div class="form-group">
+                  <input type="text" name="alamat_sesuai" class="form-control alamat_sesuai" placeholder="ALAMAT SESUAI" required>
+              </div>
+			  			   <div class="form-group">
+                  <input type="text" name="nama_si1" class="form-control nama_si1" placeholder="NAMA SI1" required>
+              </div>
+			  			   <div class="form-group">
+                  <input type="text" name="hubungan_si1" class="form-control hubungan_si1" placeholder="HUBUNGAN SI1" required>
+              </div>
+			  			   <div class="form-group">
+                  <input type="text" name="pekerjaan_app" class="form-control pekerjaan_app" placeholder="PEKERJAAN APP" required>
+              </div>
+			  			   <div class="form-group">
+                  <input type="text" name="status_pekerjaan" class="form-control status_pekerjaan" placeholder="STATUS PEKERJAAN APP" required>
+              </div>
+			  			   <div class="form-group">
+                  <input type="text" name="gaji_app" class="form-control gaji_app" placeholder="GAJI APP" required>
+              </div>
+			  			   <div class="form-group">
+                  <input type="text" name="nama_si2" class="form-control nama_si2" placeholder="NAMA SI2" required>
+              </div>
+			  			   <div class="form-group">
+                  <input type="text" name="hubungan_si2" class="form-control hubungan_si2" placeholder="HUBUNGAN SI2" required>
+              </div>
+			  			   <div class="form-group">
+                  <input type="text" name="pekerjaan_app2" class="form-control pekerjaan_app2" placeholder="PEKERJAAN SI2" required>
+              </div>
+			  			   <div class="form-group">
+                  <input type="text" name="status_pekerjaan2" class="form-control status_pekerjaan2" placeholder="STATUS PEKERJAAN APP" required>
+              </div>
+			  			   <div class="form-group">
+                  <input type="text" name="gaji_app2" class="form-control gaji_app2" placeholder="GAJI APP" required>
+              </div>
+			  			   <div class="form-group">
+                  <input type="text" name="keterangan" class="form-control keterangan" placeholder="KETERANGAN" required>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <input type="hidden" name="id" class="product_id">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+          </div>
+        </div>
+       </div>
+  </form>
+  
+  	 <!-- view Product Modal-->
+   <form action="/view" method="post">
+       <div class="modal fade" id="ViewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">View Product</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                  <input type="text" name="idprd" class="form-control idprd" placeholder="ID CUSTOMER" readonly>
+              </div>
+			<div class="form-group">
+                  <input type="text" name="name" class="form-control name" placeholder="NAME APP" readonly>
+              </div>
+               <div class="form-group">
+                  <input type="text" name="client" class="form-control client" placeholder="CLIENT" readonly>
+              </div>
+			                 <div class="form-group">
+                  <input type="text" name="address" class="form-control address" placeholder="ADDRESS" readonly>
+              </div>
+			                 <div class="form-group">
+                  <input type="text" name="kodepos" class="form-control kodepos" placeholder="KODEPOS" readonly>
+              </div>
+			   <div class="form-group">
+                  <input type="text" name="alamat_sesuai" class="form-control alamat_sesuai" placeholder="ALAMAT SESUAI" readonly>
+              </div>
+			  			   <div class="form-group">
+                  <input type="text" name="nama_si1" class="form-control nama_si1" placeholder="NAMA SI1" readonly>
+              </div>
+			  			   <div class="form-group">
+                  <input type="text" name="hubungan_si1" class="form-control hubungan_si1" placeholder="HUBUNGAN SI1" readonly>
+              </div>
+			  			   <div class="form-group">
+                  <input type="text" name="pekerjaan_app" class="form-control pekerjaan_app" placeholder="PEKERJAAN APP" readonly>
+              </div>
+			  			   <div class="form-group">
+                  <input type="text" name="status_pekerjaan" class="form-control status_pekerjaan" placeholder="STATUS PEKERJAAN APP" readonly>
+              </div>
+			  			   <div class="form-group">
+                  <input type="text" name="gaji_app" class="form-control gaji_app" placeholder="GAJI APP" readonly>
+              </div>
+			  			   <div class="form-group">
+                  <input type="text" name="nama_si2" class="form-control nama_si2" placeholder="NAMA SI2" readonly>
+              </div>
+			  			   <div class="form-group">
+                  <input type="text" name="hubungan_si2" class="form-control hubungan_si2" placeholder="HUBUNGAN SI2" readonly>
+              </div>
+			  			   <div class="form-group">
+                  <input type="text" name="pekerjaan_app2" class="form-control pekerjaan_app2" placeholder="PEKERJAAN SI2" readonly>
+              </div>
+			  			   <div class="form-group">
+                  <input type="text" name="status_pekerjaan2" class="form-control status_pekerjaan2" placeholder="STATUS PEKERJAAN APP" readonly>
+              </div>
+			  			   <div class="form-group">
+                  <input type="text" name="gaji_app2" class="form-control gaji_app2" placeholder="GAJI APP" readonly>
+              </div>
+			  			   <div class="form-group">
+                  <input type="text" name="keterangan" class="form-control keterangan" placeholder="KETERANGAN" readonly>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <input type="hidden" name="id" class="product_id">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              
+            </div>
+          </div>
+        </div>
+       </div>
+  </form>
+
+	 <!-- Delete Product Modal-->
+ 	  <form id="add-row-form" action="/delete" method="post">
+ 	     <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ 	        <div class="modal-dialog">
+ 	           <div class="modal-content">
+ 	               <div class="modal-header">
+									 	<h5 class="modal-title" id="myModalLabel">Delete Product</h5>
+ 	                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+ 	               </div>
+ 	               <div class="modal-body">
+												 <strong>Are You Sure To Delete This Data?</strong>
+ 	               </div>
+ 	               <div class="modal-footer">
+									 		<input type="hidden" name="product_id" class="form-control product_id2" required>
+ 	                   	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+ 	                  	<button type="submit" class="btn btn-success">Delete</button>
+ 	               </div>
+ 	      			</div>
+ 	        </div>
+ 	     </div>
+ 	 </form>
+
+<script src="/assets/js/jquery-3.3.1.js"></script>
+<script src="/assets/js/bootstrap.js"></script>
+<script>
+    $(document).ready(function(){
+			//showing data to modal for edit record
+      $('#mytable').on('click','.edit',function(){
+        var product_id = $(this).data('id');
+        var name = $(this).data('name');
+        var idprd = $(this).data('idprd');
+		var client = $(this).data('client');
+		var address = $(this).data('address');
+		var kodepos = $(this).data('kodepos');
+		var alamat_sesuai = $(this).data('alamat_sesuai');
+        var nama_si1 = $(this).data('nama_si1');
+		var hubungan_si1 = $(this).data('hubungan_si1');
+		var pekerjaan_app = $(this).data('pekerjaan_app');
+		var status_pekerjaan = $(this).data('status_pekerjaan');
+		var gaji_app = $(this).data('gaji_app');
+		var nama_si2 = $(this).data('nama_si2');
+		var hubungan_si2 = $(this).data('hubungan_si2');
+		var pekerjaan_app2 = $(this).data('pekerjaan_app2');
+		var status_pekerjaan2 = $(this).data('status_pekerjaan2');
+		var gaji_app2 = $(this).data('gaji_app2');
+		var keterangan = $(this).data('keterangan');
+				
+		$('#EditModal').modal('show');
+        $('.name').val(name);
+        $('.idprd').val(idprd);
+		$('.client').val(client);
+		$('.address').val(address);
+		$('.kodepos').val(kodepos);
+		$('.alamat_sesuai').val(alamat_sesuai);
+        $('.nama_si1').val(nama_si1);
+		$('.hubungan_si1').val(hubungan_si1);
+		$('.pekerjaan_app').val(pekerjaan_app);
+		$('.status_pekerjaan').val(status_pekerjaan);
+		$('.gaji_app').val(gaji_app);
+		$('.nama_si2').val(nama_si2);
+		$('.hubungan_si2').val(hubungan_si2);
+		$('.pekerjaan_app2').val(pekerjaan_app2);
+		$('.status_pekerjaan2').val(status_pekerjaan2);
+		$('.gaji_app2').val(gaji_app2);
+		$('.keterangan').val(keterangan);
+		
+		
+		
+        $('.product_id').val(product_id);
+      });
+	  
+	  //showing data to modal for view record
+      $('#mytable').on('click','.view',function(){
+        var product_id = $(this).data('id');
+        var name = $(this).data('name');
+        var idprd = $(this).data('idprd');
+		var client = $(this).data('client');
+		var address = $(this).data('address');
+		var kodepos = $(this).data('kodepos');
+		var alamat_sesuai = $(this).data('alamat_sesuai');
+        var nama_si1 = $(this).data('nama_si1');
+		var hubungan_si1 = $(this).data('hubungan_si1');
+		var pekerjaan_app = $(this).data('pekerjaan_app');
+		var status_pekerjaan = $(this).data('status_pekerjaan');
+		var gaji_app = $(this).data('gaji_app');
+		var nama_si2 = $(this).data('nama_si2');
+		var hubungan_si2 = $(this).data('hubungan_si2');
+		var pekerjaan_app2 = $(this).data('pekerjaan_app2');
+		var status_pekerjaan2 = $(this).data('status_pekerjaan2');
+		var gaji_app2 = $(this).data('gaji_app2');
+		var keterangan = $(this).data('keterangan');
+				
+		$('#ViewModal').modal('show');
+        $('.name').val(name);
+        $('.idprd').val(idprd);
+		$('.client').val(client);
+		$('.address').val(address);
+		$('.kodepos').val(kodepos);
+		$('.alamat_sesuai').val(alamat_sesuai);
+        $('.nama_si1').val(nama_si1);
+		$('.hubungan_si1').val(hubungan_si1);
+		$('.pekerjaan_app').val(pekerjaan_app);
+		$('.status_pekerjaan').val(status_pekerjaan);
+		$('.gaji_app').val(gaji_app);
+		$('.nama_si2').val(nama_si2);
+		$('.hubungan_si2').val(hubungan_si2);
+		$('.pekerjaan_app2').val(pekerjaan_app2);
+		$('.status_pekerjaan2').val(status_pekerjaan2);
+		$('.gaji_app2').val(gaji_app2);
+		$('.keterangan').val(keterangan);
+		
+		
+		
+        $('.product_id').val(product_id);
+      });
+	  
+			//showing modal for delete record
+			$('#mytable').on('click','.delete',function(){
+        var product_id = $(this).data('id');
+        $('#DeleteModal').modal('show');
+        $('.product_id2').val(product_id);
+      });
+
+    });
+</script>
+</body>
+</html>
